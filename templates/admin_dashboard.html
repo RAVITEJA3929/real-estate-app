@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard - Real Estate Consultancy{% endblock %}
+
+{% block content %}
+<div class="card shadow p-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>📋 Visitor Messages</h2>
+        <a href="{{ url_for('admin_logout') }}" class="btn btn-danger">Logout</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Message</th>
+                    <th>Submitted At</th>
+                    <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for v in messages %}
+                <tr>
+                    <td>{{ v[0] }}</td>  {# id #}
+                    <td>{{ v[1] }}</td>  {# name #}
+                    <td>{{ v[2] }}</td>  {# email #}
+                    <td>{{ v[3] }}</td>  {# phone #}
+                    <td>{{ v[4] }}</td>  {# message #}
+                    <td>{{ v[5] }}</td>  {# submitted_at #}
+                    <td>
+                        <form method="POST" action="{{ url_for('admin_remark', message_id=v[0]) }}" class="d-flex">
+                            <input type="text" name="remark" value="{{ v[6] or '' }}" class="form-control form-control-sm me-2" placeholder="Add remark">
+                            <button type="submit" class="btn btn-sm btn-success">Save</button>
+                        </form>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="7" class="text-center text-muted">No visitors yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

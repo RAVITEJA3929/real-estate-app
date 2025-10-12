@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ property.title }} - Real Estate Consultancy{% endblock %}
+
+{% block content %}
+<section class="property-detail container">
+    <h2>{{ property.title }}</h2>
+
+    <!-- Image Gallery -->
+    <div class="row">
+        {% for img in property.images %}
+        <div class="col-md-6 mb-3">
+            <img src="{{ img }}" alt="{{ property.title }}" class="img-fluid rounded shadow">
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Description -->
+    <div class="mt-4">
+        <h3>About this property</h3>
+        <p>{{ property.description }}</p>
+    </div>
+</section>
+{% endblock %}
