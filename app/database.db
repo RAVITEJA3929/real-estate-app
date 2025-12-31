@@ -1,4 +1,4 @@
-host=mysql
+host=dbcont
 user=root
 password=ccit1234
 database=realestateapp
