@@ -1,0 +1,29 @@
+CREATE DATABASE IF NOT EXISTS realestateapp 
+CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE realestateapp;
+
+CREATE TABLE IF NOT EXISTS properties (
+    id INT NOT NULL AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(12,2) NOT NULL,
+    location VARCHAR(255) DEFAULT NULL,
+    type VARCHAR(100) DEFAULT NULL,
+    images JSON DEFAULT NULL,
+    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE IF NOT EXISTS messages (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    phone VARCHAR(50) DEFAULT NULL,
+    message TEXT,
+    property_id INT DEFAULT NULL,
+    remarks VARCHAR(500) DEFAULT NULL,
+    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    KEY property_id (property_id),
+    CONSTRAINT messages_ibfk_1 FOREIGN KEY (property_id) REFERENCES properties(id) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

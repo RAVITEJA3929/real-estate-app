@@ -1,0 +1,10 @@
+FROM mysql:8.0
+
+ENV MYSQL_ROOT_PASSWORD=ccit1234
+ENV MYSQL_DATABASE=realestateapp
+ENV MYSQL_CHARACTER_SET_SERVER=utf8mb4
+ENV MYSQL_COLLATION_SERVER=utf8mb4_0900_ai_ci
+
+COPY init.sql /docker-entrypoint-initdb.d/
+
+EXPOSE 3306

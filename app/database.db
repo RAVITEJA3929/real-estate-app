@@ -1,0 +1,4 @@
+host=mysql
+user=root
+password=ccit1234
+database=realestateapp
